@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập - Tam Cá Cảnh</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+      * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #04c9ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background: linear-gradient(white,rgb(12, 117, 255));
+            padding: 25px;
+            text-align: center;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .welcome-text {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .button {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #764ba2;
+        }
+
+        .form {
+            display: none;
+            margin-top: 20px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .user-info {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .user-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 3px solid #667eea;
+        }
+
+        #logoutBtn {
+            background: crimson;
+            color: white;
+            display: none;
+        }
+
+        span {
+            color: #667eea;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #626a67;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .back-btn:hover {
+            background: #4a4f4a;
+        }
+
+   </style>
+</head>
+<body>
+    <button class="back-btn" onclick="window.history.back()">Quay Lại</button>
+    
+    <div class="container">
+        <h1 class="welcome-text" id="welcometext">Xin chào quý khách</h1>
+
+        <div id="userInfo" class="user-info">
+            <img id="userAvatar" class="user-avatar" src="" alt="Avatar">
+            <h2 id="welcomeUser"></h2>
+        </div>
+
+        <div class="button" id="authbutton">
+            <button onclick="showLogin()">Đăng nhập</button>
+            <button onclick="showRegister()">Đăng ký</button>
+        </div>
+
+        <button id="logoutBtn">Đăng xuất</button>
+
+        <div class="form" id="loginForm">
+            <h2>Đăng nhập</h2>
+            <input type="text" id="loginUser" placeholder="Tên đăng nhập">
+            <input type="password" id="loginPass" placeholder="Mật khẩu">
+            <button onclick="login()">Đăng nhập</button>
+            <p>Chưa có tài khoản? 
+                <span onclick="showRegister()">Đăng ký</span>
+            </p>
+        </div>
+
+        <div class="form" id="registerForm">
+            <h2>Đăng ký</h2>
+            <input type="text" id="registerUser" placeholder="Tên đăng nhập">
+            <input type="password" id="registerPass" placeholder="Mật khẩu">
+            <input type="text" id="registerAvatar" placeholder="URL ảnh đại diện (tùy chọn)">
+            <button onclick="register()">Đăng ký</button>
+            <p>Đã có tài khoản? 
+                <span onclick="showLogin()">Đăng nhập</span> 
+            </p>
+        </div>
+    </div>
+
+    <script>
+
+     // Lấy các phần tử 
+        const welcomeText = document.getElementById("welcometext");
+        const authButton = document.getElementById("authbutton");
+        const logoutBtn = document.getElementById("logoutBtn");
+        const userInfo = document.getElementById("userInfo");
+        const userAvatar = document.getElementById("userAvatar");
+        const welcomeUser = document.getElementById("welcomeUser");
+
+        // Kiểm tra đăng nhập khi tải trang
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = localStorage.getItem('currentUser');
+            if (currentUser) {
+                const user = JSON.parse(currentUser);
+                showUserInfo(user);
+            }
+        });
+
+        // Hiển thị form
+        function showLogin() {
+            hideAll();
+            document.getElementById("loginForm").style.display = "block";
+        }
+
+        function showRegister() {
+            hideAll();
+            document.getElementById("registerForm").style.display = "block";
+        }
+
+        function hideAll() {
+            document.getElementById("loginForm").style.display = "none";
+            document.getElementById("registerForm").style.display = "none";
+        }
+
+        // API URL backend
+        const API_URL = 'http://localhost:5000/api/auth';
+
+        // Đăng nhập
+        async function login(){
+            let user = document.getElementById("loginUser").value;
+            let pass = document.getElementById("loginPass").value;
+
+            if(!user || !pass) {
+                alert('Vui lòng nhập tên đăng nhập và mật khẩu');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: user, password: pass })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Lưu thông tin người dùng hiện tại
+                    localStorage.setItem('currentUser', JSON.stringify(data.user));
+                    
+                    // Hiển thị thông tin người dùng
+                    showUserInfo(data.user);
+                    
+                    // Chuyển về trang chủ sau 1 giây
+                    setTimeout(() => {
+                        window.location.href = "index.html";
+                    }, 1000);
+                } else {
+                    alert(data.message);
+                }
+            } catch (err) {
+                alert('Lỗi kết nối đến server. Vui lòng thử lại sau.');
+                console.error('Login error:', err);
+            }
+        }
+
+        // Hiển thị thông tin người dùng
+        function showUserInfo(user) {
+            userAvatar.src = user.avatar || "https://i.pravatar.cc/150?img=3";
+            welcomeUser.innerText = `Xin chào ${user.username}`;
+            
+            userInfo.style.display = "block";
+            welcomeText.style.display = "none";
+            authButton.style.display = "none";
+            logoutBtn.style.display = "inline-block";
+            hideAll();
+        }
+
+        // Đăng ký
+        async function register(){
+            let user = document.getElementById("registerUser").value;
+            let pass = document.getElementById("registerPass").value;
+            let avatar = document.getElementById("registerAvatar").value;
+
+            if(!user || !pass) {
+                alert("Vui lòng nhập tên đăng nhập và mật khẩu");
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        username: user, 
+                        password: pass,
+                        avatar: avatar || undefined
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert(data.message);
+                    showLogin();
+                } else {
+                    alert(data.message);
+                }
+            } catch (err) {
+                alert('Lỗi kết nối đến server. Vui lòng thử lại sau.');
+                console.error('Register error:', err);
+            }
+        }
+
+        // Đăng xuất
+        function logout(){
+            localStorage.removeItem('currentUser');
+            welcomeText.style.display = "block";
+            userInfo.style.display = "none";
+            authButton.style.display = "block";
+            logoutBtn.style.display = "none";
+            welcomeText.innerText = "Xin chào quý khách";
+            hideAll();
+            
+            // Chuyển về trang chủ
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 500);
+        }
+
+        // Gán sự kiện đăng xuất
+        document.getElementById("logoutBtn").onclick = logout;
+
+   </script>
+</body>
+</html>

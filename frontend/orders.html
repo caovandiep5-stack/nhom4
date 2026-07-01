@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch sử đơn hàng - Tam Cá Cảnht</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: #f5f5f3;
+            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .order-card {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        .order-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        .order-id {
+            font-weight: bold;
+            color: #667eea;
+        }
+        .order-date {
+            color: #666;
+            font-size: 14px;
+        }
+        .order-total {
+            font-weight: bold;
+            color: #e91e63;
+            font-size: 18px;
+        }
+        .order-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .order-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .order-item-info {
+            flex: 1;
+        }
+        .order-item-name {
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .order-item-qty {
+            color: #666;
+            font-size: 13px;
+        }
+        .empty-orders {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            background: #626a67;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            background: #4a4f4a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Quay về trang chủ</a>
+        <h1><i class="fas fa-history"></i> Lịch sử đơn hàng</h1>
+        <div id="order-list">
+            <!-- Danh sách đơn hàng sẽ được tải bằng JavaScript -->
+            <div class="empty-orders">Đang tải dữ liệu...</div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000/api/orders';
+
+        async function loadOrderHistory() {
+            const currentUser = localStorage.getItem('currentUser');
+            if (!currentUser) {
+                alert('Vui lòng đăng nhập để xem lịch sử đơn hàng');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                const user = JSON.parse(currentUser);
+                const email = user.email || user.username + '@example.com';
+                const response = await fetch(`${API_URL}?email=${encodeURIComponent(email)}`);
+                
+                if (!response.ok) {
+                    throw new Error('Không thể tải dữ liệu');
+                }
+
+                const orders = await response.json();
+                const container = document.getElementById('order-list');
+
+                if (orders.length === 0) {
+                    container.innerHTML = `<div class="empty-orders"><i class="fas fa-box-open" style="font-size: 60px; color: #ddd;"></i><p>Bạn chưa có đơn hàng nào.</p></div>`;
+                    return;
+                }
+
+                // Sắp xếp đơn hàng mới nhất lên đầu
+                orders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+                let html = '';
+                orders.forEach(order => {
+                    const itemsHtml = order.items.map(item => `
+                        <div class="order-item">
+                            <img src="${item.image || './ảnh/default-cake.jpg'}" alt="${item.name}" onerror="this.src='./ảnh/default-cake.jpg'">
+                            <div class="order-item-info">
+                                <div class="order-item-name">${item.name}</div>
+                                <div class="order-item-qty">Số lượng: ${item.quantity} x ${formatPrice(item.price)} VNĐ</div>
+                            </div>
+                        </div>
+                    `).join('');
+
+                    html += `
+                        <div class="order-card">
+                            <div class="order-header">
+                                <span class="order-id"><i class="fas fa-tag"></i> ${order.orderId}</span>
+                                <span class="order-date"><i class="far fa-calendar-alt"></i> ${new Date(order.createdAt).toLocaleString('vi-VN')}</span>
+                                <span class="order-total">${formatPrice(order.total)} VNĐ</span>
+                            </div>
+                            <div class="order-items">
+                                ${itemsHtml}
+                            </div>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+
+            } catch (error) {
+                console.error('Lỗi tải lịch sử:', error);
+                document.getElementById('order-list').innerHTML = `<div class="empty-orders"><i class="fas fa-exclamation-triangle" style="color: #f44336;"></i><p>Đã xảy ra lỗi khi tải dữ liệu.</p></div>`;
+            }
+        }
+
+        function formatPrice(price) {
+            return Number(price).toLocaleString('vi-VN');
+        }
+
+        // Tự động tải khi trang được mở
+        document.addEventListener('DOMContentLoaded', loadOrderHistory);
+    </script>
+</body>
+</html>

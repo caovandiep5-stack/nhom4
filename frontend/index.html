@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tam Cá Cảnh - Shop Cá Cảnh Uy Tín</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+ 
+<div id="wrapper"> 
+    <div id="header"> 
+        <a href="index.html" class="logo"> 
+            <img src="./ảnh/logo.jpg" alt="Logo Tam Cá Cảnh" width="150" height="100"> 
+        </a>
+<div id="menu">
+    <div class="item">
+        <a href="index.html">Trang Chủ</a>
+    </div>
+    <div class="item has-dropdown">
+        <a href="#products">Sản phẩm <i class="fas fa-chevron-down"></i></a>
+        <div class="dropdown-menu">
+            <div class="dropdown-content">
+                <a href="javascript:void(0)" onclick="filterProducts('all')" class="dropdown-item">
+                    <i class="fas fa-star"></i> Tất cả sản phẩm
+                    <span class="count">(50+)</span>
+                </a>
+                <a href="javascript:void(0)" onclick="filterProducts('birthday')" class="dropdown-item">
+                    <i class="fas fa-fish"></i> Cá Cảnh Nhỏ
+                    <span class="count">(11)</span>
+                </a>
+                <a href="javascript:void(0)" onclick="filterProducts('wedding')" class="dropdown-item">
+                    <i class="fas fa-gold"></i> Cá Vàng
+                    <span class="count">(8)</span>
+                </a>
+                <a href="javascript:void(0)" onclick="filterProducts('cupcake')" class="dropdown-item">
+                    <i class="fas fa-water"></i> Cá Thủy Sinh
+                    <span class="count">(8)</span>
+                </a>
+                <a href="javascript:void(0)" onclick="filterProducts('mousse')" class="dropdown-item">
+                    <i class="fas fa-dragon"></i> Cá Phong Thủy
+                    <span class="count">(8)</span>
+                </a>
+                <a href="javascript:void(0)" onclick="filterProducts('combo')" class="dropdown-item">
+                    <i class="fas fa-gift"></i> Combo & Set Quà
+                    <span class="count">(4)</span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="javascript:void(0)" onclick="filterProducts('sale')" class="dropdown-item sale">
+                    <i class="fas fa-tag"></i> Khuyến mãi
+                    <span class="count sale-badge">Hot</span>
+                </a>
+                <a href="javascript:void(0)" onclick="filterProducts('new')" class="dropdown-item new">
+                    <i class="fas fa-fire"></i> Cá mới về
+                    <span class="count new-badge">New</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="item">
+        <a href="#shop-intro">Giới thiệu</a>
+    </div>
+    <div class="item">
+       <a href="about-us.html">Thành viên</a>
+    </div>
+    <div class="item">
+        <a href="#footer">Liên hệ</a>
+    </div>
+</div>
+
+        <div id="actions">
+            
+            <div class="item" style="position: relative;" id="user-profile-container">
+                <div id="user-profile">
+                    <img id="user-avatar" src="" alt="Avatar">
+                </div>
+                
+        
+                <div id="user-dropdown" class="user-dropdown">
+                    <div class="user-dropdown-item" id="dropdown-username">
+                        <i class="fas fa-user"></i>
+                        <span id="dropdown-username-text"></span>
+                    </div>
+                    <div class="user-dropdown-divider"></div>
+                    <a href="sop.html" class="user-dropdown-item">
+                        <i class="fas fa-shopping-cart"></i>
+                        Giỏ hàng
+                    </a>
+
+                     <a href="orders.html" class="user-dropdown-item">
+                             <i class="fas fa-history"></i>
+                       Lịch sử đơn hàng
+                    </a>
+
+                    <a href="#" class="user-dropdown-item" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Đăng xuất
+                    </a>
+                </div>
+                <a href="login.html" id="login-btn" title="Đăng nhập">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+            </div>
+            
+            <div class="item" style="position: relative;">
+                <a href="sop.html" id="cart-btn" title="Giỏ hàng">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <span id="cart-badge" style="
+                    position: absolute;
+                    top: -8px;
+                    right: -8px;
+                    background: linear-gradient(135deg, #ff4081, #e91e63);
+                    color: white;
+                    border-radius: 50%;
+                    width: 22px;
+                    height: 22px;
+                    font-size: 12px;
+                    display: none;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                    z-index: 100;
+                ">0</span>
+            </div>  
+        </div>
+    </div>
+
+    <div id="banner">
+        <div class="box-left">
+            <h2>
+                <span>CÁ CẢNH</span>
+                <br>
+                <span>ĐA DẠNG - SẮC MÀU</span>
+            </h2>
+            <p style="transform: translateX(170px);">Chuyên cung cấp cá cảnh chất lượng cao, khỏe mạnh với đa dạng chủng loại. Giao hàng tận nơi, bảo hành sức khỏe.</p>
+            
+        </div>
+    </div>
+    
+    <!-- DANH MỤC CÁ -->
+    <div class="category-nav-section">
+
+        <!-- DANH MỤC & SẢN PHẨM -->
+<div class="category-products-container">
+    <!-- Sidebar danh mục -->
+    <div class="category-sidebar-container">
+        <h2><i class="fas fa-bars"></i> DANH MỤC CÁ</h2>
+    <div class="category-list">
+    <a href="javascript:void(0)" class="category-item active" onclick="filterProducts('all')">
+        <i class="fas fa-star"></i>
+        <span>Tất cả sản phẩm</span>
+        <span class="count">(60+)</span>
+    </a>
+    
+    <a href="javascript:void(0)" class="category-item" onclick="filterProducts('birthday')">
+        <i class="fas fa-fish"></i>
+        <span>Cá Cảnh Nhỏ</span>
+        <span class="count">(15)</span>
+    </a>
+
+    <a href="javascript:void(0)" class="category-item" onclick="filterProducts('wedding')">
+        <i class="fas fa-gold"></i>
+        <span>Cá Vàng</span>
+        <span class="count">(10)</span>
+    </a>
+
+    <a href="javascript:void(0)" class="category-item" onclick="filterProducts('cupcake')">
+        <i class="fas fa-water"></i>
+        <span>Cá Thủy Sinh</span>
+        <span class="count">(12)</span>
+    </a>
+
+    <a href="javascript:void(0)" class="category-item" onclick="filterProducts('mousse')">
+        <i class="fas fa-dragon"></i>
+        <span>Cá Phong Thủy</span>
+        <span class="count">(10)</span>
+    </a>
+
+    <a href="javascript:void(0)" class="category-item" onclick="filterProducts('combo')">
+        <i class="fas fa-gift"></i>
+        <span>Combo & Set Quà</span>
+        <span class="count">(8)</span>
+    </a>
+
+    <a href="javascript:void(0)" class="category-item sale" onclick="filterProducts('sale')">
+        <i class="fas fa-tag"></i>
+        <span>Khuyến mãi</span>
+        <span class="count">Hot</span>
+    </a>
+
+    <a href="javascript:void(0)" class="category-item new" onclick="filterProducts('new')">
+        <i class="fas fa-fire"></i>
+        <span>Cá mới về</span>
+        <span class="count">New</span>
+    </a>
+</div>
+        
+        <div class="category-banner">
+            <h3><i class="fas fa-gift"></i> ƯU ĐÃI ĐẶC BIỆT</h3>
+            <p>Giảm ngay 15% cho đơn hàng đầu tiên</p>
+            <p>Miễn phí vận chuyển đơn từ 500k</p>
+            <button class="promo-btn" onclick="showPromoCode()">
+                <i class="fas fa-ticket-alt"></i> Lấy mã giảm giá
+            </button>
+        </div>
+    </div>
+    
+    <!-- Phần hiển thị sản phẩm -->
+<div class="products-main-content">
+    <div class="products-header">
+        <h2 id="category-title">TẤT CẢ SẢN PHẨM</h2>
+        <p class="category-description" id="category-description">Khám phá những loài cá cảnh đẹp mắt, khỏe mạnh</p>
+        
+        <!-- Thanh tìm kiếm -->
+        <div class="search-container">
+            <input type="text" 
+                   class="search-box" 
+                   id="search-input" 
+                   placeholder="🔍 Tìm kiếm cá theo tên, loại, xuất xứ..."
+                   onkeyup="searchProducts(event)">
+            <button class="search-btn" onclick="performSearch()">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        
+        <!-- Hiển thị kết quả tìm kiếm -->
+        <div class="search-results-header" id="search-results-header" style="display: none;">
+            <h3>Kết quả tìm kiếm</h3>
+            <p id="search-results-count">Tìm thấy 0 sản phẩm</p>
+        </div>
+    </div>
+    
+    <!-- Nơi hiển thị sản phẩm -->
+    <div class="products-grid" id="products-grid">
+        <!-- Sản phẩm sẽ được tạo động bằng JavaScript -->
+    </div>
+    
+    <!-- Phân trang -->
+    <div class="pagination" id="pagination">
+        <!-- Phân trang sẽ được tạo động bằng JavaScript -->
+    </div>
+</div>
+    
+</div>
+
+    </div>
+    
+    <br>
+    <br>
+
+    <h2 id="products">🐠 CÁ CẢNH NHỎ</h2>
+    <div class="ten-container1" id="danhsach1"></div>
+
+    <h2>🐟 CÁ VÀNG</h2>
+    <div class="ten-container2" id="danhsach2"></div>
+
+    <h2>🌊 CÁ THỦY SINH</h2>
+    <div class="ten-container3" id="danhsach3"></div>
+    
+    <h2>🐉 CÁ PHONG THỦY</h2>
+    <div class="ten-container4" id="danhsach4"></div>
+    
+    <h2>🎁 COMBO & SET QUÀ TẶNG</h2>
+    <div class="ten-container5" id="danhsach5"></div>
+
+    <br><br><br><br>
+</div>
+
+
+<!-- GIỚI THIỆU SHOP -->
+<div id="shop-intro" class="shop-intro-section">
+    <h2>🏪 GIỚI THIỆU CỬA HÀNG</h2>
+    
+    <div class="intro-container">
+        <div class="intro-image">
+           <a href="ggt.html"><img src="./ảnh/logo.jpg" alt="Cửa hàng cá cảnh Tam Cá" onerror="this.src='./ảnh/default-fish.jpg'"></a>    
+        </div>
+        
+        <div class="intro-content">
+            <div class="intro-card">
+                <i class="fas fa-fish"></i>
+                <h3>Đa Dạng Chủng Loại</h3>
+                <p>Hơn 60 loài cá cảnh đẹp mắt từ khắp nơi trên thế giới, luôn có sẵn tại cửa hàng</p>
+            </div>
+            
+            <div class="intro-card">
+                <i class="fas fa-heart"></i>
+                <h3>Chăm Sóc Tận Tình</h3>
+                <p>Mỗi chú cá đều được chăm sóc kỹ lưỡng bởi đội ngũ chuyên nghiệp, đảm bảo sức khỏe tốt nhất</p>
+            </div>
+            
+            <div class="intro-card">
+                <i class="fas fa-bolt"></i>
+                <h3>Giao Hàng Nhanh Chóng</h3>
+                <p>Đặt online - Giao tận nơi trong 2 giờ. Đóng gói chuyên nghiệp đảm bảo an toàn cho cá</p>
+            </div>
+            
+            <div class="intro-card">
+                <i class="fas fa-award"></i>
+                <h3>Thương Hiệu Uy Tín</h3>
+                <p>5 năm kinh nghiệm với hàng ngàn khách hàng tin tưởng và hài lòng</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="story-section">
+        <h3><i class="fas fa-book-open"></i> Câu Chuyện Của Chúng Tôi</h3>
+        <p>Cửa hàng <strong>Tam Cá Cảnh</strong> được thành lập năm 2019 với đam mê mãnh liệt với thế giới cá cảnh. Chúng tôi mong muốn mang đến cho người chơi cá những sản phẩm chất lượng nhất, từ những chú cá nhỏ xinh đến những loài cá phong thủy quý hiếm. Với tiêu chí "Uy tín - Chất lượng - Tận tâm", chúng tôi không ngừng học hỏi và phát triển để phục vụ khách hàng tốt nhất.</p>
+        
+        <div class="mission-vision">
+            <div class="mission">
+                <h4><i class="fas fa-bullseye"></i> Sứ Mệnh</h4>
+                <p>"Lan tỏa niềm vui và sự thư giãn đến mọi nhà thông qua những chú cá cảnh khỏe mạnh, đẹp mắt, góp phần nâng cao chất lượng cuộc sống."</p>
+            </div>
+            
+            <div class="vision">
+                <h4><i class="fas fa-eye"></i> Tầm Nhìn</h4>
+                <p>"Trở thành cửa hàng cá cảnh hàng đầu Việt Nam, được yêu thích bởi sự đa dạng, chất lượng và dịch vụ chuyên nghiệp."</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+<!-- THÀNH VIÊN NHÓM -->
+<div id="comment">
+    <h2>👥 CÁC THÀNH VIÊN TRONG NHÓM</h2>
+    <div id="comment-body">
+        
+        <ul id="list-comment">
+            <li class="item" onclick="viewMemberDetail('caodiep')"> 
+                <div class="avatar">
+                    <img src="./ảnh/cvđ.jpg" alt="Cao Văn Điệp" width="250" height="200">
+                </div>
+                <div class="name">Cao Văn Điệp</div>
+                <div class="text">
+                    <p>Phát triển giao diện người dùng & trải nghiệm mua sắm</p>
+                </div>
+            </li>
+            <li class="item" onclick="viewMemberDetail('ngoxy')"> 
+                <div class="avatar">
+                    <img src="./ảnh/nnt.png" alt="Nguyễn trọng tín" width="250" height="200">
+                </div>
+                <div class="name">Nguyễn trọng tín</div>
+                <div class="text">
+                    <p>Nhóm trưởng - Quản lý dự án & phát triển backend</p>
+                </div>
+            </li>
+            
+            <li class="item" onclick="viewMemberDetail('ngocthien')"> 
+                <div class="avatar">
+                    <img src="./ảnh/nnt2.jpg" alt="Nguyễn Ngọc Thiện" width="250" height="200">
+                </div>
+                <div class="name">Nguyễn Ngọc Thiện</div>
+                <div class="text">
+                    <p>Thiết kế giao diện & xử lý hình ảnh sản phẩm</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div id="footer">
+    <div class="box">
+        <div class="logo">
+            <img src="./ảnh/logo.jpg" alt="Logo" width="150" height="100">
+        </div>
+        <p>"Mang sắc màu đại dương vào từng ngôi nhà"</p>
+        <p>⏰ Mở cửa: 7:00 - 22:00 hàng ngày</p>
+    </div>
+    <div class="box">
+        <h3>Liên kết nhanh</h3>
+        <ul class="quick-menu">
+            <div class="item">
+                <a href="index.html">Trang chủ</a>
+            </div>
+            <div class="item">
+               <a href="#products">Sản phẩm</a>
+            </div>
+            <div class="item">
+                <a href="#comment">Giới thiệu</a>
+            </div>
+            <div class="item">
+                <a href="#footer">Liên hệ</a>
+            </div>
+
+            <div class="item"><a href="orders.html">Lịch sử đơn hàng</a></div>
+
+            <div class="item">
+                <a href="login.html">Đăng nhập</a>
+            </div>
+        </ul>
+    </div>
+    <div class="box">
+            <h3>Thông tin liên hệ</h3>
+            <a href="https://maps.app.goo.gl/x8xTgFQQi5u8wY7L7"> <p><i class="fas fa-map-marker-alt"></i> 79 ĐT743, Bình Hòa, Thuận An, Bình Dương</p></a>
+            <p><i class="fas fa-phone"></i> 0935 656 603</p>
+            <p><i class="fas fa-envelope"></i> tamcacanh@gmail.com</p>
+        </div>
+
+   <div class="map-box" style="margin-top: 15px; max-width: 300px; margin-left: auto; margin-right: auto;">
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2640.470604426502!2d106.74024140496336!3d10.899920015247334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d83c1116183d%3A0xfa754495eeb43247!2zVHLGsOG7nW5nIFRydW5nIEPhuqVwIEPDtG5nIE5naGnhu4dwIELDrG5oIETGsMahbmc!5e1!3m2!1svi!2s!4v1782380371434!5m2!1svi!2s" 
+        width="100%" 
+        height="150" 
+        style="border:0; border-radius: 8px;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="strict-origin-when-cross-origin">
+    </iframe>
+</div>
+
+    <div class="box">
+        <h3>Đăng ký nhận tin</h3>
+        <p>Nhận ưu đãi 10% cho đơn hàng đầu tiên</p>
+        <form id="newsletter-form">
+            <input type="email" placeholder="Email của bạn" required>
+            <button type="submit">Đăng ký</button>
+        </form>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/bdi.edu.vn"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.youtube.com/@xuany8066"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            
+        </div>
+    </div>
+</div>
+
+<!-- thanh cuộn -->
+<div class="scroll-to-top" id="scrollToTop" title="Lên đầu trang">
+    <img src="./ảnh/angle-down.png" alt="Lên đầu trang" style="transform: rotate(180deg);">
+</div>
+
+<!-- Script quản lý sản phẩm -->
+<script src="main.js"></script>
+
+<!-- Script quản lý giỏ hàng -->
+<script src="cart.js"></script>
+
+<script>
+    // Hệ thống đăng nhập/quản lý người dùng
+    const AuthSystem = {
+        isLoggedIn: function() {
+            return !!localStorage.getItem('currentUser');
+        },
+        
+        getCurrentUser: function() {
+            const user = localStorage.getItem('currentUser');
+            return user ? JSON.parse(user) : null;
+        },
+        
+        logout: function() {
+            localStorage.removeItem('currentUser');
+            this.updateAuthUI();
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+        },
+        
+        updateAuthUI: function() {
+            const currentUser = this.getCurrentUser();
+            const userProfile = document.getElementById('user-profile');
+            const loginBtn = document.getElementById('login-btn');
+            const dropdownUsername = document.getElementById('dropdown-username-text');
+            const userDropdown = document.getElementById('user-dropdown');
+            const userAvatar = document.getElementById('user-avatar');
+            
+            if (currentUser && userProfile && userAvatar) {
+                userAvatar.src = currentUser.avatar || 'https://i.pravatar.cc/150?img=3';
+                userAvatar.onerror = function() {
+                    this.src = 'https://i.pravatar.cc/150?img=3';
+                };
+                
+                if (dropdownUsername) {
+                    dropdownUsername.textContent = currentUser.username;
+                }
+                
+                if (userProfile) userProfile.style.display = 'block';
+                if (loginBtn) loginBtn.style.display = 'none';
+                if (userDropdown) userDropdown.style.display = 'none';
+                
+                const profileAvatar = userProfile.querySelector('img');
+                if (profileAvatar) {
+                    profileAvatar.src = currentUser.avatar || 'https://i.pravatar.cc/150?img=3';
+                    profileAvatar.onerror = function() {
+                        this.src = 'https://i.pravatar.cc/150?img=3';
+                    };
+                }
+            } else {
+                if (loginBtn) loginBtn.style.display = 'block';
+                if (userProfile) userProfile.style.display = 'none';
+                if (userDropdown) userDropdown.style.display = 'none';
+            }
+        },
+        
+        init: function() {
+            this.updateAuthUI();
+            
+            const userProfile = document.getElementById('user-profile');
+            if (userProfile) {
+                userProfile.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const userDropdown = document.getElementById('user-dropdown');
+                    if (userDropdown) {
+                        userDropdown.style.display = userDropdown.style.display === 'block' ? 'none' : 'block';
+                    }
+                });
+            }
+            
+            document.addEventListener('click', (e) => {
+                const userDropdown = document.getElementById('user-dropdown');
+                if (userDropdown && !e.target.closest('#user-profile-container')) {
+                    userDropdown.style.display = 'none';
+                }
+            });
+        }
+    };
+    
+    function filterCakes(category) {
+        document.querySelectorAll('.category-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        event.target.closest('.category-item').classList.add('active');
+        
+        switch(category) {
+            case 'birthday':
+                document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+                break;
+            case 'wedding':
+                document.querySelector('h2:nth-of-type(2)').scrollIntoView({ behavior: 'smooth' });
+                break;
+            case 'cupcake':
+                document.querySelector('h2:nth-of-type(3)').scrollIntoView({ behavior: 'smooth' });
+                break;
+            case 'mousse':
+                document.querySelector('h2:nth-of-type(4)').scrollIntoView({ behavior: 'smooth' });
+                break;
+            case 'combo':
+                document.querySelector('h2:nth-of-type(5)').scrollIntoView({ behavior: 'smooth' });
+                break;
+            default:
+                document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+    
+    function scrollToSection(sectionId) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+    
+    function showPromoCode() {
+        alert('🎉 MÃ KHUYẾN MÃI: FISH15\nGiảm 15% cho đơn hàng đầu tiên\nÁp dụng đến hết tháng 12/2024');
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        AuthSystem.init();
+        
+        if (!localStorage.getItem('cart')) {
+            localStorage.setItem('cart', JSON.stringify([]));
+        }
+        
+        setTimeout(() => {
+            try {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+                const displayCount = totalItems > 99 ? '99+' : totalItems;
+                
+                document.querySelectorAll('#cart-badge, #cart-count, .cart-count').forEach(el => {
+                    if (el) {
+                        el.textContent = displayCount;
+                        el.style.display = totalItems > 0 ? 'flex' : 'none';
+                    }
+                });
+            } catch (error) {
+                console.error('Lỗi khi cập nhật giỏ hàng:', error);
+            }
+        }, 100);
+        
+        const newsletterForm = document.getElementById('newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                if (email) {
+                    alert(`Cảm ơn bạn đã đăng ký nhận tin với email: ${email}\nMã giảm giá 10% đã được gửi đến email của bạn!`);
+                    this.reset();
+                }
+            });
+        }
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        const protectedPages = ['sop.html', 'cart.html'];
+        const currentPage = window.location.pathname.split('/').pop();
+        
+        if (protectedPages.includes(currentPage) && !AuthSystem.isLoggedIn()) {
+            alert('Vui lòng đăng nhập để truy cập trang này!');
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 2000);
+        }
+        
+        document.getElementById('cart-btn')?.addEventListener('click', function(e) {
+            const currentUser = localStorage.getItem('currentUser');
+            if (!currentUser) {
+                e.preventDefault();
+                alert('Vui lòng đăng nhập để xem giỏ hàng!');
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 1500);
+            }
+        });
+        
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        if (scrollToTopBtn) {
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.style.display = 'flex';
+                } else {
+                    scrollToTopBtn.style.display = 'none';
+                }
+            });
+            
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    });
+    
+    window.logout = function() {
+        AuthSystem.logout();
+    };
+
+    function setupDropdownMenu() {
+        const dropdownItems = document.querySelectorAll('.has-dropdown');
+        
+        dropdownItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.classList.add('hover');
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    if (!item.matches(':hover')) {
+                        item.classList.remove('hover');
+                    }
+                }, 200);
+            });
+        });
+        
+        const isMobile = window.innerWidth <= 768;
+        
+        if (isMobile) {
+            dropdownItems.forEach(item => {
+                const link = item.querySelector('a');
+                
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    dropdownItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    item.classList.toggle('active');
+                });
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.has-dropdown')) {
+                    dropdownItems.forEach(item => {
+                        item.classList.remove('active');
+                    });
+                }
+            });
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        setupDropdownMenu();
+        
+        window.addEventListener('resize', function() {
+            setupDropdownMenu();
+        });
+    });
+
+    function viewMemberDetail(memberId) {
+        localStorage.setItem('selectedMember', memberId);
+        window.location.href = 'about-us.html';
+    }
+</script>
+
+</body>
+</html>

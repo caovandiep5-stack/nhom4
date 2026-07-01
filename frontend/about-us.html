@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới Thiệu Thành Viên - Tam Cá Cảnh</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .member-name-clickable {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        
+        .member-name-clickable:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .member-name-clickable:active {
+            transform: translateY(0);
+        }
+        
+        .member-name-clickable::after {
+            content: "📋";
+            margin-left: 8px;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        
+        .member-name-clickable:hover::after {
+            content: "👆";
+        }
+        
+        @keyframes highlightMember {
+            0% { 
+                background-color: transparent; 
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+            50% { 
+                background-color: rgba(102, 126, 234, 0.2); 
+                box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+                transform: scale(1.02);
+            }
+            100% { 
+                background-color: transparent; 
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                transform: scale(1);
+            }
+        }
+        
+        .highlight-animation {
+            animation: highlightMember 2s ease;
+        }
+        
+        .breadcrumb {
+            background: #f9f9f9;
+            padding: 15px 0;
+            margin-top: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .breadcrumb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .breadcrumb a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+        
+        .breadcrumb .current {
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .breadcrumb span {
+            color: #999;
+        }
+        
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .contact-btn:hover {
+            background: white;
+            color: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .contact-btn i {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header"> 
+        <a href="index.html" class="logo"> 
+            <img src="./ảnh/logo.jpg" alt="Logo Tam Cá Cảnh" width="150" height="100"> 
+        </a>
+        
+        <div id="menu">
+            <div class="item">
+                <a href="index.html">Trang Chủ</a>
+            </div>
+            <div class="item">
+                <a href="about-us.html">Giới thiệu</a>
+            </div>
+            <div class="item">
+                <a href="#footer">Liên hệ</a>
+            </div>
+        </div>
+
+        <div id="actions">
+            <div class="item" style="position: relative;" id="user-profile-container">
+                <div id="user-profile" style="display: none;">
+                    <img id="user-avatar" src="" alt="Avatar" style="width: 40px; height: 40px; border-radius: 50%;">
+                </div>
+                
+                
+                <a href="login.html" id="login-btn" title="Đăng nhập">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+            </div>
+            
+            <div class="item" style="position: relative;">
+                <a href="sop.html" id="cart-btn" title="Giỏ hàng">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <span id="cart-badge">0</span>
+            </div>  
+        </div>
+    </div>
+
+    <div class="breadcrumb">
+        <div class="breadcrumb-container">
+            <a href="index.html">Trang chủ</a>
+            <span>/</span>
+            <span class="current">Giới thiệu thành viên</span>
+        </div>
+    </div>
+
+    <div class="about-us-container">
+        <div class="members-section">
+            <h2>🌟 GIỚI THIỆU THÀNH VIÊN </h2>
+            
+          <!-- Thành viên 1 - Cao Văn Điệp -->
+<div class="member-card" id="member-caodiep">
+    <!-- Avatar -->
+    <div class="member-avatar">
+        <img src="./ảnh/cvđ.jpg" alt="Cao Văn Điệp" onerror="this.src='./ảnh/default-avatar.jpg'">
+    </div>
+    
+    <!-- Thông tin -->
+    <div class="member-info">
+        <h3 class="member-name">Cao Văn Điệp</h3>
+        <p class="member-role">💻 Frontend Developer</p>
+        
+        <!-- Tags -->
+        <div class="member-tags">
+            <span class="tag">🎨 Thiết kế login/logout</span>
+            <span class="tag">📱 UI/UX</span>
+        </div>
+        
+        <!-- Skills -->
+        <div class="member-skills">
+            <div class="skill">
+                <span class="skill-name">HTML/CSS</span>
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 25%;"></div>
+                </div>
+                <span class="skill-percent">25%</span>
+            </div>
+            <div class="skill">
+                <span class="skill-name">JavaScript</span>
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 35%;"></div>
+                </div>
+                <span class="skill-percent">35%</span>
+            </div>
+        </div>
+        
+        <!-- Quote -->
+        <div class="member-quote">
+            "Một thiết kế tốt không chỉ đẹp mắt mà còn phải mang lại trải nghiệm tuyệt vời cho người dùng."
+        </div>
+        
+        <!-- Contact -->
+        <div class="member-contact">
+            <a href="mailto:diep.cv@example.com" class="contact-btn email">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+            <a href="tel:+84123456789" class="contact-btn phone">
+                <i class="fas fa-phone"></i> 0123 456 789
+            </a>
+        </div>
+        
+        <!-- Công việc chính -->
+        <div class="member-work">
+            <h4>📋 Công việc chính</h4>
+            <ul>
+                <li>Thiết kế form login, logout tối giản và dễ nhìn</li>
+                <li>Làm phần tiêu đề tối giản</li>
+                <li>Tạo giỏ hàng với chức năng mua sắm thực tế</li>
+            </ul>
+        </div>
+        
+        <!-- Đóng góp -->
+        <div class="member-contribution">
+            <h4>&lt;/&gt; ĐÓNG GÓP</h4>
+            <div class="contribution-item">
+                <span>HTML/CSS</span>
+                <div class="contrib-bar">
+                    <div class="contrib-fill" style="width: 25%;"></div>
+                </div>
+                <span>25%</span>
+            </div>
+            <div class="contribution-item">
+                <span>JavaScript</span>
+                <div class="contrib-bar">
+                    <div class="contrib-fill" style="width: 35%;"></div>
+                </div>
+                <span>35%</span>
+            </div>
+        </div>
+        
+        <!-- Câu nói tâm đắc -->
+        <div class="member-quote-bottom">
+            <h4>💬 Câu nói tâm đắc</h4>
+            <p>"Một thiết kế tốt không chỉ đẹp mắt mà còn phải mang lại trải nghiệm tuyệt vời cho người dùng."</p>
+        </div>
+    </div>
+</div>
+
+           <!-- Thành viên 2 - Nguyễn Trọng Tín -->
+<div class="member-card" id="member-ngoxy">
+    <!-- Avatar -->
+    <div class="member-avatar">
+        <img src="./ảnh/nnt.png" alt="Nguyễn Trọng Tín" onerror="this.src='./ảnh/default-avatar.jpg'">
+    </div>
+    
+    <!-- Thông tin -->
+    <div class="member-info">
+        <h3 class="member-name">Nguyễn Trọng Tín</h3>
+        <p class="member-role">👑 Nhóm trưởng & Backend Developer</p>
+        
+        <!-- Tags -->
+        <div class="member-tags">
+            <span class="tag">👥 Nhóm trưởng</span>
+            <span class="tag">⚙️ Backend</span>
+            <span class="tag">📦 Làm toàn bộ thẻ sản phẩm</span>
+            <span class="tag">📊 Quản lý dự án</span>
+        </div>
+        
+        <!-- Skills -->
+        <div class="member-skills">
+            <div class="skill">
+                <span class="skill-name">HTML/CSS</span>
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 65%;"></div>
+                </div>
+                <span class="skill-percent">65%</span>
+            </div>
+            <div class="skill">
+                <span class="skill-name">JavaScript</span>
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 55%;"></div>
+                </div>
+                <span class="skill-percent">55%</span>
+            </div>
+        </div>
+        
+        <!-- Quote -->
+        <div class="member-quote">
+            "Công nghệ tốt nhất là công nghệ phục vụ tốt nhất cho con người."
+        </div>
+        
+        <!-- Contact -->
+        <div class="member-contact">
+            <a href="mailto:ngonguyenxuany@gmail.com" class="contact-btn email">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+            <a href="tel:+84987654321" class="contact-btn phone">
+                <i class="fas fa-phone"></i> 0938 88 11 34
+            </a>
+            <a href="https://www.facebook.com/ngoxuany2k10" target="_blank" class="contact-btn facebook">
+                <i class="fab fa-facebook"></i> Facebook
+            </a>
+        </div>
+        
+        <!-- Công việc chính -->
+        <div class="member-work">
+            <h4>📋 Công việc chính</h4>
+            <ul>
+                <li>Tạo ra những thẻ sản phẩm cá cảnh</li>
+                <li>Có chức năng tìm kiếm, danh mục khi click</li>
+                <li>Đảm bảo trang web chạy bình thường</li>
+            </ul>
+        </div>
+        
+        <!-- Đóng góp -->
+        <div class="member-contribution">
+            <h4>&lt;/&gt; ĐÓNG GÓP</h4>
+            <div class="contribution-item">
+                <span>HTML/CSS</span>
+                <div class="contrib-bar">
+                    <div class="contrib-fill" style="width: 65%;"></div>
+                </div>
+                <span>65%</span>
+            </div>
+            <div class="contribution-item">
+                <span>JavaScript</span>
+                <div class="contrib-bar">
+                    <div class="contrib-fill" style="width: 55%;"></div>
+                </div>
+                <span>55%</span>
+            </div>
+        </div>
+        
+        <!-- Câu nói tâm đắc -->
+        <div class="member-quote-bottom">
+            <h4>💬 Câu nói tâm đắc</h4>
+            <p>"Công nghệ tốt nhất là công nghệ phục vụ tốt nhất cho con người."</p>
+        </div>
+    </div>
+</div>
+
+          <!-- Thành viên 3 - Nguyễn Ngọc Thiện -->
+<div class="member-card" id="member-ngocthien">
+    <!-- Avatar -->
+    <div class="member-avatar">
+        <img src="./ảnh/nnt2.jpg" alt="Nguyễn Ngọc Thiện" onerror="this.src='./ảnh/default-avatar.jpg'">
+    </div>
+    
+    <!-- Thông tin -->
+    <div class="member-info">
+        <h3 class="member-name">Nguyễn Ngọc Thiện</h3>
+        <p class="member-role">🎨 Chuyên viên Thiết kế Đồ họa</p>
+        
+        <!-- Tags -->
+        <div class="member-tags">
+            <span class="tag">🎨 Phối màu</span>
+            <span class="tag">🖼️ Xử lý ảnh</span>
+            <span class="tag">✍️ Sáng tạo nội dung</span>
+        </div>
+        
+        <!-- Skills -->
+        <div class="member-skills">
+            <div class="skill">
+                <span class="skill-name">HTML/CSS</span>
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 10%;"></div>
+                </div>
+                <span class="skill-percent">10%</span>
+            </div>
+            <div class="skill">
+                <span class="skill-name">JavaScript</span>
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 5%;"></div>
+                </div>
+                <span class="skill-percent">5%</span>
+            </div>
+        </div>
+        
+        <!-- Quote -->
+        <div class="member-quote">
+            "Mỗi bức ảnh, mỗi thiết kế đều kể một câu chuyện riêng."
+        </div>
+        
+        <!-- Contact -->
+        <div class="member-contact">
+            <a href="mailto:thien.nn@example.com" class="contact-btn email">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+            <a href="tel:+84123123123" class="contact-btn phone">
+                <i class="fas fa-phone"></i> 0123 123 123
+            </a>
+        </div>
+        
+        <!-- Công việc chính -->
+        <div class="member-work">
+            <h4>📋 Công việc chính</h4>
+            <ul>
+                <li>Thiết kế giao diện và hình ảnh sản phẩm</li>
+                <li>Xử lý và chỉnh sửa hình ảnh</li>
+                <li>Tạo nội dung cho phần còn lại của trang web</li>
+            </ul>
+        </div>
+        
+        <!-- Đóng góp -->
+        <div class="member-contribution">
+            <h4>&lt;/&gt; ĐÓNG GÓP</h4>
+            <div class="contribution-item">
+                <span>HTML/CSS</span>
+                <div class="contrib-bar">
+                    <div class="contrib-fill" style="width: 10%;"></div>
+                </div>
+                <span>10%</span>
+            </div>
+            <div class="contribution-item">
+                <span>JavaScript</span>
+                <div class="contrib-bar">
+                    <div class="contrib-fill" style="width: 5%;"></div>
+                </div>
+                <span>5%</span>
+            </div>
+        </div>
+        
+        <!-- Câu nói tâm đắc -->
+        <div class="member-quote-bottom">
+            <h4>💬 Câu nói tâm đắc</h4>
+            <p>"Mỗi bức ảnh, mỗi thiết kế đều kể một câu chuyện riêng."</p>
+        </div>
+    </div>
+</div>
+
+    <footer id="footer">
+        <div class="box">
+            <div class="logo">
+                <img src="./ảnh/logo.jpg" alt="Logo" width="150" height="100">
+            </div>
+            <p>"Mang sắc màu đại dương vào từng ngôi nhà"</p>
+            <p>⏰ Mở cửa: 7:00 - 22:00 hàng ngày</p>
+        </div>
+        <div class="box">
+            <h3>Liên kết nhanh</h3>
+            <ul class="quick-menu">
+                <div class="item">
+                    <a href="index.html">Trang chủ</a>
+                </div>
+                <div class="item">
+                   <a href="index.html#products">Sản phẩm</a>
+                </div>
+                <div class="item">
+                    <a href="about-us.html">Giới thiệu</a>
+                </div>
+                <div class="item">
+                    <a href="#footer">Liên hệ</a>
+                </div>
+                <div class="item">
+                    <a href="login.html">Đăng nhập</a>
+                </div>
+            </ul>
+        </div>
+        <div class="box">
+            <h3>Chính sách</h3>
+            <ul class="quick-menu">
+                <div class="item">
+                    <a href="#">Chính sách giao hàng</a>
+                </div>
+                <div class="item">
+                    <a href="#">Bảo mật thông tin</a>
+                </div>
+                <div class="item">
+                    <a href="#">Đổi trả & hoàn tiền</a>
+                </div>
+                <div class="item">
+                    <a href="#">Điều khoản sử dụng</a>
+                </div>
+            </ul>
+        </div>
+        <div class="box">
+            <h3>Đăng ký nhận tin</h3>
+            <p>Nhận ưu đãi 10% cho đơn hàng đầu tiên</p>
+            <form id="newsletter-form">
+                <input type="email" placeholder="Email của bạn" required>
+                <button type="submit">Đăng ký</button>
+            </form>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function updateCartCount() {
+                try {
+                    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+                    const cartBadge = document.getElementById('cart-badge');
+                    
+                    if (cartBadge) {
+                        cartBadge.textContent = totalItems > 99 ? '99+' : totalItems;
+                        cartBadge.style.display = totalItems > 0 ? 'flex' : 'none';
+                    }
+                } catch (error) {
+                    console.error('Lỗi khi cập nhật giỏ hàng:', error);
+                }
+            }
+
+            function checkLogin() {
+                const currentUser = localStorage.getItem('currentUser');
+                const userProfile = document.getElementById('user-profile');
+                const loginBtn = document.getElementById('login-btn');
+                
+                if (currentUser && userProfile) {
+                    try {
+                        const user = JSON.parse(currentUser);
+                        const userAvatar = document.getElementById('user-avatar');
+                        if (userAvatar && user.avatar) {
+                            userAvatar.src = user.avatar;
+                        }
+                        userProfile.style.display = 'block';
+                        loginBtn.style.display = 'none';
+                    } catch (error) {
+                        console.error('Lỗi khi xử lý thông tin đăng nhập:', error);
+                    }
+                }
+            }
+
+            const newsletterForm = document.getElementById('newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    if (email) {
+                        alert(`Cảm ơn bạn đã đăng ký nhận tin với email: ${email}\nMã giảm giá 10% đã được gửi đến email của bạn!`);
+                        this.reset();
+                    }
+                });
+            }
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            updateCartCount();
+            checkLogin();
+            
+            const scrollToTopBtn = document.createElement('div');
+            scrollToTopBtn.className = 'scroll-to-top';
+            scrollToTopBtn.innerHTML = '<img src="./ảnh/angle-down.png" alt="Lên đầu trang" style="transform: rotate(180deg);">';
+            scrollToTopBtn.onclick = function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+            document.body.appendChild(scrollToTopBtn);
+
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.style.display = 'flex';
+                } else {
+                    scrollToTopBtn.style.display = 'none';
+                }
+            });
+
+            document.querySelectorAll('.member-name-clickable').forEach(nameElement => {
+                nameElement.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const memberCard = this.closest('.member-card');
+                    if (memberCard) {
+                        memberCard.classList.add('highlight-animation');
+                        memberCard.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'start'
+                        });
+                        setTimeout(() => {
+                            memberCard.classList.remove('highlight-animation');
+                        }, 2000);
+                    }
+                });
+            });
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const memberParam = urlParams.get('member');
+            
+            if (memberParam) {
+                setTimeout(() => {
+                    const memberElement = document.getElementById(`member-${memberParam}`);
+                    if (memberElement) {
+                        memberElement.classList.add('highlight-animation');
+                        memberElement.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'start',
+                            inline: 'nearest'
+                        });
+                        setTimeout(() => {
+                            memberElement.classList.remove('highlight-animation');
+                        }, 2000);
+                    }
+                }, 300);
+            }
+            
+            const selectedMember = localStorage.getItem('selectedMember');
+            if (selectedMember && !memberParam) {
+                setTimeout(() => {
+                    const memberElement = document.getElementById(`member-${selectedMember}`);
+                    if (memberElement) {
+                        memberElement.classList.add('highlight-animation');
+                        memberElement.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'start'
+                        });
+                        localStorage.removeItem('selectedMember');
+                        setTimeout(() => {
+                            memberElement.classList.remove('highlight-animation');
+                        }, 2000);
+                    }
+                }, 300);
+            }
+        });
+        
+        function viewMemberDetail(memberId) {
+            localStorage.setItem('selectedMember', memberId);
+            window.location.href = 'about-us.html';
+        }
+        
+        function viewMemberDetailURL(memberId) {
+            window.location.href = `about-us.html?member=${memberId}`;
+        }
+    </script>
+</body>
+</html>

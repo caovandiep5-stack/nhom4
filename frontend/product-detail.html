@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Sản Phẩm - Tam Cá Cảnh</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="header" style="margin-top: 0; border-radius: 0;">
+        <a href="index.html" class="logo"> 
+            <img src="./ảnh/logo.jpg" alt="Logo Tam Cá Cảnh" width="150" height="100"> 
+        </a>
+        
+     <div id="menu">
+            <div class="item">
+                <a href="index.html">Trang Chủ</a>
+            </div>
+            <div class="item">
+                <a href="index.html#comment">Giới thiệu</a>
+            </div>
+            <div class="item">
+       <a href="about-us.html">Thành viên</a>
+    </div>
+            <div class="item">
+                <a href="#footer">Liên hệ</a>
+            </div>
+        </div>
+
+        <div id="actions">
+            <div class="item">
+                <a href="login.html" id="login-btn">  
+                    <i class="fas fa-user-circle"></i>
+                </a>
+            </div>
+            <div class="item">
+                <a href="sop.html" id="cart-btn">  
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <span id="cart-badge" style="
+                    position: absolute;
+                    top: -8px;
+                    right: -8px;
+                    background: linear-gradient(135deg, #ff4081, #e91e63);
+                    color: white;
+                    border-radius: 50%;
+                    width: 22px;
+                    height: 22px;
+                    font-size: 12px;
+                    display: none;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                    z-index: 100;
+                ">0</span>
+            </div>  
+        </div>
+    </div>
+
+    <div class="breadcrumb">
+        <div class="breadcrumb-container">
+            <a href="index.html">Trang chủ</a>
+            <span>/</span>
+            <a href="index.html#products">Sản phẩm</a>
+            <span>/</span>
+            <span class="current" id="product-category">Cá Cảnh</span>
+            <span>/</span>
+            <span class="current" id="product-name">Chi tiết sản phẩm</span>
+        </div>
+    </div>
+
+    <div class="product-detail-container">
+        <div id="product-detail-content">
+            <!-- Nội dung sẽ được tạo động bằng JavaScript -->
+        </div>
+    </div>
+
+    <footer id="footer">
+        <div class="box">
+            <p>Đảm bảo những chú cá khỏe mạnh, đẹp mắt đến với mọi người</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/bdi.edu.vn"><i class="fab fa-facebook"></i></a>
+                <a href="www.youtube.com/@TruongTrungCapCongNghiepBinhDu"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+        <div class="box">
+            <h3>Liên kết nhanh</h3>
+            <ul class="quick-menu">
+                <li class="item">
+                    <a href="index.html">Trang chủ</a>
+                </li>
+                <li class="item">
+                    <a href="index.html#products">Sản phẩm</a>
+                </li>
+                <li class="item">
+                    <a href="index.html#comment">Giới thiệu</a>
+                </li>
+                <li class="item">
+                    <a href="#contact">Liên hệ</a>
+                </li>
+                <li class="item">
+                    <a href="login.html">Đăng nhập</a>
+                </li>
+            </ul>
+        </div>
+        <div class="box">
+            <h3>Thông tin liên hệ</h3>
+            <a href="https://maps.app.goo.gl/x8xTgFQQi5u8wY7L7"> <p><i class="fas fa-map-marker-alt"></i> 79 ĐT743, Bình Hòa, Thuận An, Bình Dương</p></a>
+            <p><i class="fas fa-phone"></i> 0935 656 603</p>
+            <p><i class="fas fa-envelope"></i> tamcacanh@gmail.com</p>
+        </div>
+
+ <div class="map-box" style="margin-top: 15px; max-width: 300px; margin-left: auto; margin-right: auto;">
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2640.470604426502!2d106.74024140496336!3d10.899920015247334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d83c1116183d%3A0xfa754495eeb43247!2zVHLGsOG7nW5nIFRydW5nIEPhuqVwIEPDtG5nIE5naGnhu4dwIELDrG5oIETGsMahbmc!5e1!3m2!1svi!2s!4v1782380371434!5m2!1svi!2s" 
+        width="100%" 
+        height="150" 
+        style="border:0; border-radius: 8px;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="strict-origin-when-cross-origin">
+    </iframe>
+</div>
+        <div class="box">
+            <h3>Đăng ký nhận tin</h3>
+            <p>Nhận thông tin khuyến mãi mới nhất</p>
+            <form id="newsletter-form">
+                <input type="email" placeholder="Địa chỉ email" required>
+                <button type="submit">Đăng ký</button>
+            </form>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+    <script src="product-detail.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsletterForm = document.getElementById('newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    if (email) {
+                        alert(`Cảm ơn bạn đã đăng ký nhận tin với email: ${email}`);
+                        this.reset();
+                    }
+                });
+            }
+        });
+
+        function setupDropdownMenu() {
+            const dropdownItems = document.querySelectorAll('.has-dropdown');
+            
+            dropdownItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    item.classList.add('hover');
+                });
+                
+                item.addEventListener('mouseleave', () => {
+                    setTimeout(() => {
+                        if (!item.matches(':hover')) {
+                            item.classList.remove('hover');
+                        }
+                    }, 200);
+                });
+            });
+            
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                dropdownItems.forEach(item => {
+                    const link = item.querySelector('a');
+                    
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        dropdownItems.forEach(otherItem => {
+                            if (otherItem !== item) {
+                                otherItem.classList.remove('active');
+                            }
+                        });
+                        
+                        item.classList.toggle('active');
+                    });
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!e.target.closest('.has-dropdown')) {
+                        dropdownItems.forEach(item => {
+                            item.classList.remove('active');
+                        });
+                    }
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setupDropdownMenu();
+            
+            window.addEventListener('resize', function() {
+                setupDropdownMenu();
+            });
+        });
+    </script>
+</body>
+</html>

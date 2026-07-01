@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới Thiệu - Tam Cá Cảnh</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .about-page-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-top: 40px;
+        }
+
+        .about-header h1 {
+            font-size: 42px;
+            color: #333;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-header h1:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .about-section {
+            margin-bottom: 80px;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgb(255, 255, 255);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            color: #ffffff;
+            font-size: 28px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #ffffff;
+        }
+
+        .section-title i {
+            color: #667eea;
+            font-size: 30px;
+        }
+
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .story-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .story-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .story-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .story-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .story-text p {
+            margin-bottom: 20px;
+        }
+
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .mission-vision-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .mission-card, .vision-card {
+            padding: 30px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e3e7f0 100%);
+            border-left: 5px solid #4CAF50;
+        }
+
+        .vision-card {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e6e9ff 100%);
+            border-left: 5px solid #2196F3;
+        }
+
+        .mission-card h3, .vision-card h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mission-card p, .vision-card p {
+            color: #555;
+            font-style: italic;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        @media (max-width: 992px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .value-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s;
+            height: 100%;
+        }
+
+        .value-card:hover {
+            border-color: #667eea;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.15);
+        }
+
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+        }
+
+        .value-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .value-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 992px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .member-photo {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .team-member:hover .member-photo img {
+            transform: scale(1.1);
+        }
+
+        .member-info {
+            padding: 25px;
+        }
+
+        .member-name {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .member-role {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .member-desc {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .member-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .skill-tag {
+            background: #f0f0f0;
+            color: #666;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-info-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .contact-info-card h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .contact-item i {
+            color: #667eea;
+            font-size: 20px;
+            margin-top: 2px;
+        }
+
+        .contact-text {
+            flex: 1;
+        }
+
+        .contact-text h4 {
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .contact-text p {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .contact-form-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #f0f0f0;
+        }
+
+        .contact-form-card h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .breadcrumb {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .breadcrumb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .breadcrumb-container a {
+            text-decoration: none;
+            color: #666;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .breadcrumb-container a:hover {
+            color: #e91e63;
+        }
+
+        .breadcrumb-container .current {
+            color: #e91e63;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <a href="index.html" class="logo">
+                <img src="./ảnh/logo.jpg" alt="Logo Tam Cá Cảnh" width="150" height="100">
+            </a>
+            
+            <div id="menu">
+                <div class="item">
+                    <a href="index.html">Trang Chủ</a>
+                </div>
+                <div class="item has-dropdown">
+                    <a href="#products">Sản phẩm <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-content">
+                            <a href="index.html#products" class="dropdown-item">
+                                <i class="fas fa-star"></i> Tất cả sản phẩm
+                                <span class="count">(60+)</span>
+                            </a>
+                            <a href="index.html#products" class="dropdown-item">
+                                <i class="fas fa-fish"></i> Cá Cảnh Nhỏ
+                                <span class="count">(15)</span>
+                            </a>
+                            <a href="index.html#products" class="dropdown-item">
+                                <i class="fas fa-gold"></i> Cá Vàng
+                                <span class="count">(10)</span>
+                            </a>
+                            <a href="index.html#products" class="dropdown-item">
+                                <i class="fas fa-water"></i> Cá Thủy Sinh
+                                <span class="count">(12)</span>
+                            </a>
+                            <a href="index.html#products" class="dropdown-item">
+                                <i class="fas fa-dragon"></i> Cá Phong Thủy
+                                <span class="count">(10)</span>
+                            </a>
+                            <a href="index.html#products" class="dropdown-item">
+                                <i class="fas fa-gift"></i> Combo & Set Quà
+                                <span class="count">(8)</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <a href="#story">Giới thiệu</a>
+                </div>
+                <div class="item">
+                    <a href="#team">Đội ngũ</a>
+                </div>
+                <div class="item">
+                    <a href="#footer">Liên hệ</a>
+                </div>
+            </div>
+
+            <div id="actions">
+                <div class="item" style="position: relative;" id="user-profile-container">
+                    <div id="user-profile">
+                        <img id="user-avatar" src="" alt="Avatar">
+                    </div>
+                    
+                    <div id="user-dropdown" class="user-dropdown">
+                        <div class="user-dropdown-item" id="dropdown-username">
+                            <i class="fas fa-user"></i>
+                            <span id="dropdown-username-text"></span>
+                        </div>
+                        <div class="user-dropdown-divider"></div>
+                        <a href="sop.html" class="user-dropdown-item">
+                            <i class="fas fa-shopping-cart"></i>
+                            Giỏ hàng
+                        </a>
+                        <a href="#" class="user-dropdown-item" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Đăng xuất
+                        </a>
+                    </div>
+                    <a href="login.html" id="login-btn" title="Đăng nhập">
+                        <i class="fas fa-user-circle"></i>
+                    </a>
+                </div>
+                
+                <div class="item" style="position: relative;">
+                    <a href="sop.html" id="cart-btn" title="Giỏ hàng">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                    <span id="cart-badge">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="breadcrumb">
+            <div class="breadcrumb-container">
+                <a href="index.html">Trang chủ</a>
+                <span>/</span>
+                <span class="current">Giới thiệu</span>
+            </div>
+        </div>
+
+        <div class="about-page-container">
+            <div class="about-header">
+                <h1>VỀ CHÚNG TÔI</h1>
+                <p class="subtitle">
+                    Tam Cá Cảnh - Nơi hội tụ những loài cá cảnh đẹp nhất, khỏe mạnh nhất, 
+                    mang đến niềm vui và sự thư giãn cho mọi gia đình yêu thủy sinh.
+                </p>
+            </div>
+
+            <div class="about-section" id="story">
+                <h2 class="section-title"><i class="fas fa-book-open"></i> Câu Chuyện Của Chúng Tôi</h2>
+                <div class="story-content">
+                    <div class="story-image">
+                        <img src="./ảnh/logo.jpg" alt="Cửa hàng Tam Cá Cảnh" onerror="this.src='./ảnh/default-fish.jpg'">
+                    </div>
+                    <div class="story-text">
+                        <p><strong>Tam Cá Cảnh</strong> được thành lập năm 2019 bởi ba người bạn có chung đam mê với thế giới cá cảnh. Xuất phát từ tình yêu với những chú cá xinh đẹp và mong muốn mang đến những sản phẩm chất lượng cho người chơi cá tại Việt Nam, chúng tôi đã bắt đầu hành trình của mình từ một cửa hàng nhỏ.</p>
+                        
+                        <p>Với phương châm <em>"Mỗi chú cá là một tác phẩm nghệ thuật của tạo hóa"</em>, chúng tôi không ngừng học hỏi, nghiên cứu để mang đến cho khách hàng những loài cá đẹp, khỏe mạnh và dịch vụ chăm sóc tận tâm.</p>
+                        
+                        <p>Đến nay, Tam Cá Cảnh đã phục vụ hàng ngàn khách hàng và trở thành địa chỉ tin cậy cho những người yêu thích cá cảnh, từ người mới chơi đến những tay chơi chuyên nghiệp.</p>
+                        
+                        <p>Chúng tôi tin rằng, một chú cá khỏe mạnh không chỉ mang lại vẻ đẹp cho không gian sống mà còn là người bạn đồng hành thư giãn, giúp giảm căng thẳng và mang lại niềm vui mỗi ngày.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-section">
+                <h2 class="section-title"><i class="fas fa-bullseye"></i> Sứ Mệnh & Tầm Nhìn</h2>
+                <div class="mission-vision-grid">
+                    <div class="mission-card">
+                        <h3><i class="fas fa-flag"></i> SỨ MỆNH</h3>
+                        <p>"Lan tỏa niềm vui và sự thư giãn đến mọi nhà thông qua những chú cá cảnh khỏe mạnh, đẹp mắt. Chúng tôi cam kết cung cấp sản phẩm chất lượng, tư vấn tận tình và dịch vụ chăm sóc khách hàng chu đáo."</p>
+                    </div>
+                    <div class="vision-card">
+                        <h3><i class="fas fa-eye"></i> TẦM NHÌN</h3>
+                        <p>"Trở thành cửa hàng cá cảnh hàng đầu Việt Nam, được yêu thích bởi sự đa dạng, chất lượng và dịch vụ chuyên nghiệp. Hướng đến phát triển bền vững và nâng cao văn hóa chơi cá cảnh của người Việt."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-section">
+                <h2 class="section-title"><i class="fas fa-gem"></i> Giá Trị Cốt Lõi</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>CHẤT LƯỢNG TUYỆT HẢO</h3>
+                        <p>Chọn lọc những chú cá khỏe mạnh nhất, nguồn gốc rõ ràng, đảm bảo chất lượng tốt nhất khi đến tay khách hàng.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>SÁNG TẠO KHÔNG NGỪNG</h3>
+                        <p>Luôn cập nhật những loài cá mới, phong cách bố trí hồ cá độc đáo, phù hợp với xu hướng hiện đại.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3>DỊCH VỤ TẬN TÂM</h3>
+                        <p>Đội ngũ nhân viên chuyên nghiệp, tư vấn nhiệt tình, hỗ trợ khách hàng 24/7 với thái độ thân thiện.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3>UY TÍN - TRÁCH NHIỆM</h3>
+                        <p>Cam kết giao hàng đúng hẹn, đảm bảo chất lượng như đã giới thiệu, bảo hành sức khỏe cho cá.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>THÂN THIỆN MÔI TRƯỜNG</h3>
+                        <p>Sử dụng bao bì thân thiện với môi trường, hạn chế rác thải nhựa, bảo vệ hệ sinh thái thủy sinh.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>CỘNG ĐỒNG - CHIA SẺ</h3>
+                        <p>Đồng hành cùng các hoạt động bảo vệ môi trường nước, chia sẻ kiến thức nuôi cá đến cộng đồng.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-section" id="team">
+                <h2 class="section-title"><i class="fas fa-users"></i> Đội Ngũ Của Chúng Tôi</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="./ảnh/cvđ.jpg" alt="Cao Văn Điệp">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Cao Văn Điệp</h3>
+                            <div class="member-role">Chuyên viên Thiết kế & Trải nghiệm người dùng</div>
+                            <p class="member-desc">Chịu trách nhiệm thiết kế giao diện website, tối ưu trải nghiệm mua sắm và phát triển tính năng mới cho hệ thống.</p>
+                            <div class="member-skills">
+                                <span class="skill-tag">UI/UX Design</span>
+                                <span class="skill-tag">Frontend</span>
+                                <span class="skill-tag">Responsive</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="./ảnh/nnt.png" alt="nguyễn trọng tín">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">nguyễn trọng tín</h3>
+                            <div class="member-role">Trưởng nhóm - Quản lý dự án & Backend</div>
+                            <p class="member-desc">Điều phối dự án, phát triển hệ thống backend, quản lý cơ sở dữ liệu và đảm bảo tính bảo mật cho website.</p>
+                            <div class="member-skills">
+                                <span class="skill-tag">Project Management</span>
+                                <span class="skill-tag">Backend</span>
+                                <span class="skill-tag">Database</span>
+                                <span class="skill-tag">Security</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="./ảnh/nnt2.jpg" alt="Nguyễn Ngọc Thiện">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Nguyễn Ngọc Thiện</h3>
+                            <div class="member-role">Chuyên viên Nội dung & Hình ảnh</div>
+                            <p class="member-desc">Xử lý hình ảnh sản phẩm, viết nội dung mô tả, quản lý thông tin sản phẩm và hỗ trợ marketing online.</p>
+                            <div class="member-skills">
+                                <span class="skill-tag">Content Writing</span>
+                                <span class="skill-tag">Photo Editing</span>
+                                <span class="skill-tag">Product Management</span>
+                                <span class="skill-tag">Digital Marketing</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-section" id="contact">
+                <h2 class="section-title"><i class="fas fa-envelope"></i> Liên Hệ Với Chúng Tôi</h2>
+                <div class="contact-grid">
+                    <div class="contact-info-card">
+                        <h3><i class="fas fa-info-circle"></i> Thông Tin Liên Hệ</h3>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div class="contact-text">
+                                    <h4>Địa chỉ cửa hàng</h4>
+                                    <p>79 ĐT743, Bình Hòa, Thuận An, Bình Dương</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <div class="contact-text">
+                                    <h4>Số điện thoại</h4>
+                                    <p>0935 656 603 (Hỗ trợ 24/7)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <div class="contact-text">
+                                    <h4>Email</h4>
+                                    <p>tamcacanh@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="fas fa-clock"></i>
+                                <div class="contact-text">
+                                    <h4>Giờ mở cửa</h4>
+                                    <p>Thứ 2 - Chủ nhật: 7:00 - 22:00</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="fas fa-shipping-fast"></i>
+                                <div class="contact-text">
+                                    <h4>Giao hàng</h4>
+                                    <p>Miễn phí giao hàng trong nội thành đơn từ 500k</p>
+                                    <p>Giao hàng toàn quốc</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-card">
+                        <h3><i class="fas fa-comment-dots"></i> Gửi Tin Nhắn Cho Chúng Tôi</h3>
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="name">Họ và tên *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Số điện thoại</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Chủ đề</label>
+                                <input type="text" id="subject" name="subject">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Nội dung *</label>
+                                <textarea id="message" name="message" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-paper-plane"></i> Gửi tin nhắn
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="footer">
+            <div class="box">
+                <div class="logo">
+                    <img src="./ảnh/logo.jpg" alt="Logo" width="150" height="100">
+                </div>
+                <p>"Mang sắc màu đại dương vào từng ngôi nhà"</p>
+                <p>⏰ Mở cửa: 7:00 - 22:00 hàng ngày</p>
+            </div>
+            <div class="box">
+                <h3>Liên kết nhanh</h3>
+                <ul class="quick-menu">
+                    <div class="item">
+                        <a href="index.html">Trang chủ</a>
+                    </div>
+                    <div class="item">
+                        <a href="index.html#products">Sản phẩm</a>
+                    </div>
+                    <div class="item">
+                        <a href="about-us.html">Giới thiệu</a>
+                    </div>
+                    <div class="item">
+                        <a href="#footer">Liên hệ</a>
+                    </div>
+                    <div class="item">
+                        <a href="login.html">Đăng nhập</a>
+                    </div>
+                </ul>
+            </div>
+            <div class="box">
+                <h3>Thông tin liên hệ</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 79 ĐT743, Bình Hòa, Thuận An, Bình Dương</p>
+                <p><i class="fas fa-phone"></i> 0935 656 603</p>
+                <p><i class="fas fa-envelope"></i> tamcacanh@gmail.com</p>
+            </div>
+            <div class="box">
+                <h3>Đăng ký nhận tin</h3>
+                <p>Nhận ưu đãi 10% cho đơn hàng đầu tiên</p>
+                <form id="newsletter-form">
+                    <input type="email" placeholder="Email của bạn" required>
+                    <button type="submit">Đăng ký</button>
+                </form>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/bdi.edu.vn"><i class="fab fa-facebook"></i></a>
+                    <a href="www.youtube.com/@TruongTrungCapCongNghiepBinhDu"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </footer>
+
+        <div class="scroll-to-top" id="scrollToTop" title="Lên đầu trang">
+            <img src="./ảnh/angle-down.png" alt="Lên đầu trang" style="transform: rotate(180deg);">
+        </div>
+    </div>
+
+    <script src="cart.js"></script>     
+    <script>
+        const AuthSystem = {
+            isLoggedIn: function() {
+                return !!localStorage.getItem('currentUser');
+            },
+            
+            getCurrentUser: function() {
+                const user = localStorage.getItem('currentUser');
+                return user ? JSON.parse(user) : null;
+            },
+            
+            logout: function() {
+                localStorage.removeItem('currentUser');
+                this.updateAuthUI();
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+            },
+            
+            updateAuthUI: function() {
+                const currentUser = this.getCurrentUser();
+                const userProfile = document.getElementById('user-profile');
+                const loginBtn = document.getElementById('login-btn');
+                const dropdownUsername = document.getElementById('dropdown-username-text');
+                const userDropdown = document.getElementById('user-dropdown');
+                const userAvatar = document.getElementById('user-avatar');
+                
+                if (currentUser && userProfile && userAvatar) {
+                    userAvatar.src = currentUser.avatar || 'https://i.pravatar.cc/150?img=3';
+                    userAvatar.onerror = function() {
+                        this.src = 'https://i.pravatar.cc/150?img=3';
+                    };
+                    
+                    if (dropdownUsername) {
+                        dropdownUsername.textContent = currentUser.username;
+                    }
+                    
+                    if (userProfile) userProfile.style.display = 'block';
+                    if (loginBtn) loginBtn.style.display = 'none';
+                    if (userDropdown) userDropdown.style.display = 'none';
+                    
+                    const profileAvatar = userProfile.querySelector('img');
+                    if (profileAvatar) {
+                        profileAvatar.src = currentUser.avatar || 'https://i.pravatar.cc/150?img=3';
+                        profileAvatar.onerror = function() {
+                            this.src = 'https://i.pravatar.cc/150?img=3';
+                        };
+                    }
+                } else {
+                    if (loginBtn) loginBtn.style.display = 'block';
+                    if (userProfile) userProfile.style.display = 'none';
+                    if (userDropdown) userDropdown.style.display = 'none';
+                }
+            },
+            
+            init: function() {
+                this.updateAuthUI();
+                
+                const userProfile = document.getElementById('user-profile');
+                if (userProfile) {
+                    userProfile.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const userDropdown = document.getElementById('user-dropdown');
+                        if (userDropdown) {
+                            userDropdown.style.display = userDropdown.style.display === 'block' ? 'none' : 'block';
+                        }
+                    });
+                }
+                
+                document.addEventListener('click', (e) => {
+                    const userDropdown = document.getElementById('user-dropdown');
+                    if (userDropdown && !e.target.closest('#user-profile-container')) {
+                        userDropdown.style.display = 'none';
+                    }
+                });
+            }
+        };
+        
+        window.logout = function() {
+            AuthSystem.logout();
+        };
+        
+        function handleContactForm(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            if (name && email) {
+                alert(`Cảm ơn bạn ${name} đã liên hệ với chúng tôi!\nChúng tôi sẽ phản hồi đến email ${email} trong thời gian sớm nhất.`);
+                document.getElementById('contact-form').reset();
+            }
+        }
+        
+        function setupDropdownMenu() {
+            const dropdownItems = document.querySelectorAll('.has-dropdown');
+            
+            dropdownItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    item.classList.add('hover');
+                });
+                
+                item.addEventListener('mouseleave', () => {
+                    setTimeout(() => {
+                        if (!item.matches(':hover')) {
+                            item.classList.remove('hover');
+                        }
+                    }, 200);
+                });
+            });
+            
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                dropdownItems.forEach(item => {
+                    const link = item.querySelector('a');
+                    
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        dropdownItems.forEach(otherItem => {
+                            if (otherItem !== item) {
+                                otherItem.classList.remove('active');
+                            }
+                        });
+                        
+                        item.classList.toggle('active');
+                    });
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!e.target.closest('.has-dropdown')) {
+                        dropdownItems.forEach(item => {
+                            item.classList.remove('active');
+                        });
+                    }
+                });
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            AuthSystem.init();
+            
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', handleContactForm);
+            }
+            
+            const newsletterForm = document.getElementById('newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    if (email) {
+                        alert(`Cảm ơn bạn đã đăng ký nhận tin với email: ${email}\nMã giảm giá 10% đã được gửi đến email của bạn!`);
+                        this.reset();
+                    }
+                });
+            }
+            
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            if (scrollToTopBtn) {
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > 300) {
+                        scrollToTopBtn.style.display = 'flex';
+                    } else {
+                        scrollToTopBtn.style.display = 'none';
+                    }
+                });
+                
+                scrollToTopBtn.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            updateCartCount();
+            setupDropdownMenu();
+            
+            window.addEventListener('resize', function() {
+                setupDropdownMenu();
+            });
+        });
+        
+        function updateCartCount() {
+            try {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+                const cartBadge = document.getElementById('cart-badge');
+                
+                if (cartBadge) {
+                    cartBadge.textContent = totalItems > 99 ? '99+' : totalItems;
+                    cartBadge.style.display = totalItems > 0 ? 'flex' : 'none';
+                }
+            } catch (error) {
+                console.error('Lỗi khi cập nhật giỏ hàng:', error);
+            }
+        }
+    </script>
+</body>
+</html>
